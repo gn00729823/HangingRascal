@@ -1,4 +1,12 @@
 ﻿using UnityEngine;
+
+public enum _MessageType
+{
+    Damage=0,
+
+}
+
+
 public class Character_Login
 {
     public int hp;		        //血量
@@ -31,9 +39,17 @@ public class Character_Move
 		Health = _health;
     }
 }
-class PlayerData
+public class Character_ShowUI
 {
-
+    public string uid;
+    public string message;
+    public _MessageType type;
+    public Character_ShowUI(string _uid,string _message, _MessageType _type)
+    {
+        uid = _uid;
+        message = _message;
+        type = _type;
+    }
 }
 
 

@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1059BAD0-5F76-D9F9-A3AB-87C21B09BFDD}</ProjectGuid>
+    <ProjectGuid>{1903F7E9-CA66-0DFE-53F3-9707FD2A6F4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -76,18 +76,18 @@
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>D:/MyUnityProject/Character/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>D:/MyUnityProject/HangingRascal/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="ServerOperationCode">
- <HintPath>D:/MyUnityProject/Character/Assets/Plugins/ServerOperationCode.dll</HintPath>
+ <HintPath>D:/MyUnityProject/HangingRascal/Assets/Plugins/ServerOperationCode.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>D:/MyUnityProject/Character/Assets/Plugins/PhotonWebGL/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>D:/MyUnityProject/HangingRascal/Assets/Plugins/PhotonWebGL/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{3F845F50-5598-88C2-C591-1394DE531AA6}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{88146C8E-183C-5D32-AC54-08DEAB25286B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
