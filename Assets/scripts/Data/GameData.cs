@@ -15,6 +15,7 @@ public class GameData{
 		PhotonGlobal.PS.CharacterUpdateEvent += onCharacterUpdate;
 		PhotonGlobal.PS.LeaveEvent += onCharacterLeave;
 		PhotonGlobal.PS.onPlayerChangeRoom += onPlayerChangeRoom;
+		PhotonGlobal.PS.onServerMessage += onServerMessage;
 	}
 
 	private Dictionary<string , Character_Login> characterLoginData = new Dictionary<string, Character_Login> ();
@@ -87,7 +88,6 @@ public class GameData{
 	}
 
 	public void onGetLogin(string _nicName, string _uid, int _hp, Vector3 _pos,bool _isMainPlayer = false){
-	//	Debug.Log ("GameData Get Login Event");
 		Character_Login loginData = new Character_Login (_nicName,_uid,_hp,_pos,_isMainPlayer);
 		Messenger.Broadcast<Character_Login> (GameEvent.Character_Login, loginData);
 
@@ -97,7 +97,6 @@ public class GameData{
 	}
 
 	public void onCharacterUpdate(string _uid, int _hp, Vector3 _pos,int _clip,int health,bool facing = false){
-	//	Debug.Log ("GameData Get Move Event");
 		Character_Move moveData = new Character_Move (_uid, _pos, (Animator_Clip)_clip, facing,health);
 		Messenger.Broadcast<Character_Move> (GameEvent.Character_Move, moveData);
 	}
@@ -106,6 +105,8 @@ public class GameData{
 		Messenger.Broadcast<string> (GameEvent.Character_Leave,uid);
 	}
 
-	//Messenger.AddListener<Character_Move>(GameEvent.Character_Move, OnCharacterMove);
-
+	public void onServerMessage(string uid,int type,string message){
+		
+		//Messenger.Broadcast<string> (GameEvent.Character_Leave,uid);
+	}
 }
