@@ -8,13 +8,17 @@ public class HiddenObjectScript : MonoBehaviour {
 
 
 	public void AddPlayer(string uid, BattleSpriteAction target){
-		if (!inSidePlayer.ContainsKey (uid))
+		if (!inSidePlayer.ContainsKey (uid)) {
 			inSidePlayer.Add (uid, target);
+			target.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+		}
 	}
 
 	public void RemovePlayer(string uid){
-		if (inSidePlayer.ContainsKey (uid))
+		if (inSidePlayer.ContainsKey (uid)) {
+			inSidePlayer[uid].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
 			inSidePlayer.Remove (uid);
+		}
 	}
 
 	public List<BattleSpriteAction> getInsidePlayer(){
