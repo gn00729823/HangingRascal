@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
     private GameObject uiPrefab;
     private GameObject canvas;
+
+    private List<playerUiObj> UIObjList = new List<playerUiObj>();
 	// Use this for initialization
     void Awake(){
         canvas = transform.GetChild(1).gameObject;
@@ -20,7 +22,27 @@ public class PlayerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate() {
-        Debug.Log("??");
+       if(UIObjList.Count!=0)
+        {
+            foreach(playerUiObj obj in UIObjList)
+            {
+                if(obj.moveRange!=0)
+                {
+                   
+                    obj.moveRange--;
+                    float y = obj.UIobj.transform.localPosition.y +3;
+                    float x = obj.UIobj.transform.localPosition.x;
+
+                    obj.UIobj.transform.localPosition = new Vector3(x,y,0);
+                }
+                else 
+                {
+                    Destroy(obj.UIobj);
+                    UIObjList.Remove(obj);
+                    
+                }
+            }
+        }
 	}
 
    private GameObject NewUiObj(string _message, _MessageType type)
@@ -40,7 +62,26 @@ public class PlayerUI : MonoBehaviour {
 
     public void showUi(Character_ShowUI _ui)
     {
-        NewUiObj(_ui.message,_ui.type);
+        playerUiObj obj = new playerUiObj();
+        obj.moveRange = 50;
+        obj.UIobj = NewUiObj(_ui.message,_ui.type);
+        float x = obj.UIobj.transform.localPosition.x;
+        float y = obj.UIobj.transform.localPosition.y;
+        obj.UIobj.transform.localPosition = new Vector3(x+=Random.Range(-100,100),y+= Random.Range(-25, 25),0);
+        UIObjList.Add(obj);
     }
 
+    [ContextMenu("Do testUi")]
+    public void testUi()
+    {
+        Character_ShowUI ui = new Character_ShowUI("123","100",_MessageType.Damage);
+        showUi(ui);
+    }
+
+}
+
+class playerUiObj
+{
+    public float moveRange;
+    public GameObject UIobj;
 }
