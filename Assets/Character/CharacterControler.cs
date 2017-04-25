@@ -58,6 +58,7 @@ public class CharacterControler : MonoBehaviour
 			MemberGlobal.mainPlayer = obj;
 		} else {
 			script.rig2d.gravityScale = 0;
+			script.gameObject.GetComponent<CircleCollider2D> ().enabled = false;
 		}
 			
 		

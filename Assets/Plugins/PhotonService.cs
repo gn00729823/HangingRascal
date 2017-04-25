@@ -177,6 +177,7 @@ public class PhotonService : IPhotonPeerListener {
 
 		case (byte)OperationCode.Leave:
 			{
+				MessageEvent ("get Leave Event : " + eventData.Parameters.Count);
 				string uID = Convert.ToString (eventData.Parameters [(byte)ServerOperationCode.ActorParameter.UniqueID]);
 				LeaveEvent (uID);
 			}
@@ -201,6 +202,13 @@ public class PhotonService : IPhotonPeerListener {
 				}
 			}
 			break;
+
+		case (byte)ServerOperationCode.GameParameter.OnDamage:
+			{
+				string uid = Convert.ToString (eventData.Parameters [(byte)ServerOperationCode.ActorParameter.UniqueID]);
+				int damage = Convert.ToInt32 (eventData.Parameters [(byte)ServerOperationCode.GameParameter.Health]);
+				onPlayerDamage (uid,damage);
+			}break;
 		}
 	}
 
@@ -271,6 +279,16 @@ public class PhotonService : IPhotonPeerListener {
 		}
 	}
 
+	public void onTakeDamage(int damage){
+		try{
+			var request = new OperationRequest{OperationCode = (byte)ServerOperationCode.GameParameter.GameParm, Parameters = new Dictionary<byte, object>()};
+			request.Parameters.Add((byte)ServerOperationCode.GameParameter.OnDamage,damage);
+			this.peer.OpCustom(request.OperationCode,request.Parameters,true,0);
+		}catch(Exception EX){
+			throw EX;
+		}
+	}
+
 
 	public class RoomInfo{
 		public string RoomName;
@@ -295,6 +313,9 @@ public class PhotonService : IPhotonPeerListener {
 
 	public delegate void CommonHandler();
 	public event CommonHandler onPlayerChangeRoom;
+
+	public delegate void DamageHandler(string uid,int damage);
+	public event DamageHandler onPlayerDamage;
 
 	public delegate void LeaveEventHandler(string uid);
 	public event LeaveEventHandler LeaveEvent;

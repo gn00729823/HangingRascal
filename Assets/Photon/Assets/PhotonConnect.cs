@@ -68,12 +68,12 @@ public class PhotonConnect : MonoBehaviour {
 			GUI.Label (new Rect ((Screen.width / 2) - 200, (Screen.height / 2) - 10, 400, 20), "Connect Fail.");
 		} else {
 			if (GUI.Button (new Rect (5, 5, 100, 50), "JoinRoom1")) {
-				
+				PhotonGlobal.PS.LeaveRoom ();
 				PhotonGlobal.PS.JoinRoom (1);
 				//PhotonGlobal.PS.JoinRoom (GameData.CurrentFloor);
 			}
 			if (GUI.Button (new Rect (105, 5, 100, 50), "JoinRoom2")) {
-				
+				PhotonGlobal.PS.LeaveRoom ();
 				PhotonGlobal.PS.JoinRoom (2);
 				//PhotonGlobal.PS.JoinRoom (GameData.CurrentFloor);
 			}

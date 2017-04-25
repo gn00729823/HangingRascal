@@ -667,4 +667,24 @@ public class BattleSpriteAction : MonoBehaviour
         TagHashpool[tag.ToString()] = Animator.StringToHash(tag.ToString());
         return TagHashpool[tag.ToString()];
     }
+
+	void OnTriggerEnter2D(Collider2D collider){
+		if (collider.gameObject.tag == "HiddenObject") {
+			Material mat = gameObject.GetComponent<MeshRenderer> ().material;
+			mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 0.5f);
+		}
+		HiddenObjectScript script = collider.GetComponent<HiddenObjectScript> ();
+		if(animatorState == Animator_State.Crouch){
+			script.AddPlayer (uid, this);
+		}
+
+		List<BattleSpriteAction> players = script.getInsidePlayer ();
+
+	}
+	void OnTriggerExit2D(Collider2D collider){
+		if (collider.gameObject.tag == "MainPlayer") {
+			Material mat = gameObject.GetComponent<MeshRenderer> ().material;
+			mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 1);
+		}
+	}
 }
