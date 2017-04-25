@@ -8,8 +8,6 @@
 -r:Assets/Plugins/Photon3Unity3D.dll
 -r:Assets/Plugins/ServerOperationCode.dll
 -r:Assets/Plugins/PhotonWebGL/WebSocket/websocket-sharp.dll
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_6

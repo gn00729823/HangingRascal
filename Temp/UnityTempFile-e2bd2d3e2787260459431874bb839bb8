@@ -1,34 +1,14 @@
 -debug
 -target:library
 -nowarn:0169
--out:Temp/Assembly-CSharp-Editor.dll
+-out:Temp/Assembly-CSharp-firstpass.dll
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
--r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
--r:Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
--r:Library/ScriptAssemblies/Assembly-CSharp.dll
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/nunit.framework.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/UnityEditor.EditorTestsRunner.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll"
 -r:Assets/Plugins/Photon3Unity3D.dll
 -r:Assets/Plugins/ServerOperationCode.dll
 -r:Assets/Plugins/PhotonWebGL/WebSocket/websocket-sharp.dll
--r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/UnityEditor.EditorTestsRunner.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/EditorTestsRunner/Editor/nunit.framework.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll"
--r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_6
 -define:UNITY_5_3
@@ -102,12 +82,13 @@
 -define:UNITY_EDITOR_WIN
 -define:UNITY_TEAM_LICENSE
 -define:UNITY_PRO_LICENSE
-Assets/Editor/ContainClip.cs
-Assets/Editor/MapCreatorEditor.cs
-Assets/Editor/RenameAssets.cs
-"Assets/Editor/Sprite Animation Preview/OverrideEditor.cs"
-"Assets/Editor/Sprite Animation Preview/SpriteAnimationClipEditor.cs"
-"Assets/Editor/Sprite Animation Preview/SpriteAnimationTimeControl.cs"
-"Assets/Editor/Sprite Animation Preview/TimeControl.cs"
+Assets/Plugins/GameEvent.cs
+Assets/Plugins/MemberGlobal.cs
+Assets/Plugins/Messenger/Callback.cs
+Assets/Plugins/Messenger/Messenger.cs
+Assets/Plugins/PhotonGlobal.cs
+Assets/Plugins/PhotonService.cs
+Assets/Plugins/PhotonWebGL/SocketWebTcp.cs
+Assets/Plugins/PhotonWebGL/WebSocket/WebSocket.cs
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\2.0\System.Runtime.Serialization.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\2.0\System.Xml.Linq.dll"
