@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Character/01.unity
+- path: Assets/Login.unity
   isLoaded: 1
   isActive: 1
