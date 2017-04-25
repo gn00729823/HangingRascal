@@ -267,6 +267,9 @@ public class BattleSpriteAction : MonoBehaviour
 			playerFront = PlayerFront.left;
         }
 
+		if(clip != Animator_Clip.Crouch)
+			animator.SetBool(getTagHash(AnimationTag.IsCrouch), false);
+
         switch(clip)
         {
             case Animator_Clip.Idle:
@@ -532,7 +535,7 @@ public class BattleSpriteAction : MonoBehaviour
 			
 			animator.SetTrigger(getTagHash(AnimationTag.Damage));
 		}
-
+		longCrouch = false;
        
     }
     public void OnDeath()
@@ -673,21 +676,53 @@ public class BattleSpriteAction : MonoBehaviour
     }
 	void OnTriggerEnter2D(Collider2D collider){
 		if (collider.gameObject.tag == "HiddenObject") {
-			Material mat = gameObject.GetComponent<MeshRenderer> ().material;
-			mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 0.5f);
-		}
-		HiddenObjectScript script = collider.GetComponent<HiddenObjectScript> ();
-		if(animatorState == Animator_State.Crouch){
-			script.AddPlayer (uid, this);
-		}
+			if (isMainPlayer) {
+				Material mat = collider.gameObject.GetComponent<MeshRenderer> ().material;
+				mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 0.5f);
 
-		List<BattleSpriteAction> players = script.getInsidePlayer ();
+				HiddenObjectScript script = collider.GetComponent<HiddenObjectScript> ();
+				List<BattleSpriteAction> players = script.getInsidePlayer ();
+				foreach (BattleSpriteAction pl in players)
+					pl.gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+			}
+		
+		}
 
 	}
-	void OnTriggerExit2D(Collider2D collider){
-		if (collider.gameObject.tag == "MainPlayer") {
-			Material mat = gameObject.GetComponent<MeshRenderer> ().material;
-			mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 1);
+	void OnTriggerStay2D(Collider2D collider){
+		if (collider.gameObject.tag == "HiddenObject") {
+			HiddenObjectScript script = collider.GetComponent<HiddenObjectScript> ();
+			if (isMainPlayer) {
+				Material mat = collider.gameObject.GetComponent<MeshRenderer> ().material;
+				mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 0.5f);
+			}
+
+			if (animatorState == Animator_State.Crouch && !isMainPlayer) {
+				script.AddPlayer (uid, this);
+				Debug.Log ("HIDE");
+			} else {
+				script.RemovePlayer (uid);
+			}
+
 		}
+	}
+
+
+	void OnTriggerExit2D(Collider2D collider){
+		if (collider.gameObject.tag == "HiddenObject" && isMainPlayer) {
+			Material mat = collider.gameObject.GetComponent<MeshRenderer> ().material;
+			mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 1);
+
+			HiddenObjectScript script = collider.GetComponent<HiddenObjectScript> ();
+
+			List<BattleSpriteAction> players = script.getInsidePlayer ();
+			foreach (BattleSpriteAction pl in players) {
+				if (pl.gameObject.Equals (this.gameObject))
+					continue;
+				pl.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+			}
+				
+		}
+
 	}
 }

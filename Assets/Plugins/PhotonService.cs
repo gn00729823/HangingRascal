@@ -203,11 +203,12 @@ public class PhotonService : IPhotonPeerListener {
 			}
 			break;
 
-		case (byte)ServerOperationCode.GameParameter.OnDamage:
+		case (byte)ServerOperationCode.GameParameter.OnMessage:
 			{
 				string uid = Convert.ToString (eventData.Parameters [(byte)ServerOperationCode.ActorParameter.UniqueID]);
-				int damage = Convert.ToInt32 (eventData.Parameters [(byte)ServerOperationCode.GameParameter.Health]);
-				onPlayerDamage (uid,damage);
+				int type = Convert.ToInt32 (eventData.Parameters [(byte)ServerOperationCode.MessageParamater.Type]);
+				string message = Convert.ToString (eventData.Parameters [(byte)ServerOperationCode.MessageParamater.Message]);
+				onServerMessage (uid, type, message);
 			}break;
 		}
 	}
@@ -279,10 +280,12 @@ public class PhotonService : IPhotonPeerListener {
 		}
 	}
 
-	public void onTakeDamage(int damage){
+	public void sendMessage(string uid,int type,string message){
 		try{
-			var request = new OperationRequest{OperationCode = (byte)ServerOperationCode.GameParameter.GameParm, Parameters = new Dictionary<byte, object>()};
-			request.Parameters.Add((byte)ServerOperationCode.GameParameter.OnDamage,damage);
+			var request = new OperationRequest{OperationCode = (byte)ServerOperationCode.GameParameter.OnMessage, Parameters = new Dictionary<byte, object>()};
+			request.Parameters.Add((byte)ServerOperationCode.ActorParameter.UniqueID,uid);
+			request.Parameters.Add((byte)ServerOperationCode.MessageParamater.Type,type);
+			request.Parameters.Add((byte)ServerOperationCode.MessageParamater.Message,message);
 			this.peer.OpCustom(request.OperationCode,request.Parameters,true,0);
 		}catch(Exception EX){
 			throw EX;
@@ -314,8 +317,8 @@ public class PhotonService : IPhotonPeerListener {
 	public delegate void CommonHandler();
 	public event CommonHandler onPlayerChangeRoom;
 
-	public delegate void DamageHandler(string uid,int damage);
-	public event DamageHandler onPlayerDamage;
+	public delegate void ServerMessage(string uid,int type,string message);
+	public event ServerMessage onServerMessage;
 
 	public delegate void LeaveEventHandler(string uid);
 	public event LeaveEventHandler LeaveEvent;

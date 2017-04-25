@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{88146C8E-183C-5D32-AC54-08DEAB25286B}</ProjectGuid>
+    <ProjectGuid>{DE1E9A45-D002-D8CE-4998-8F3F305B217C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -57,19 +57,19 @@
      <None Include="Assets\StreamingAssets\2.txt" />
      <None Include="Assets\StreamingAssets\1.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>D:/MyUnityProject/HangingRascal/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>D:/HangingRascal_Git/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="ServerOperationCode">
- <HintPath>D:/MyUnityProject/HangingRascal/Assets/Plugins/ServerOperationCode.dll</HintPath>
+ <HintPath>D:/HangingRascal_Git/Assets/Plugins/ServerOperationCode.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>D:/MyUnityProject/HangingRascal/Assets/Plugins/PhotonWebGL/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>D:/HangingRascal_Git/Assets/Plugins/PhotonWebGL/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

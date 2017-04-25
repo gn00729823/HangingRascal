@@ -8,13 +8,17 @@ public class HiddenObjectScript : MonoBehaviour {
 
 
 	public void AddPlayer(string uid, BattleSpriteAction target){
-		if (!inSidePlayer.ContainsKey (uid))
+		if (!inSidePlayer.ContainsKey (uid)) {
 			inSidePlayer.Add (uid, target);
+			target.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+		}
 	}
 
 	public void RemovePlayer(string uid){
-		if (inSidePlayer.ContainsKey (uid))
+		if (inSidePlayer.ContainsKey (uid)) {
+			inSidePlayer[uid].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
 			inSidePlayer.Remove (uid);
+		}
 	}
 
 	public List<BattleSpriteAction> getInsidePlayer(){
@@ -24,19 +28,6 @@ public class HiddenObjectScript : MonoBehaviour {
 		}
 		return result;
 	}
-
-//	void OnTriggerEnter2D(Collider2D collider){
-//		if (collider.gameObject.tag == "MainPlayer") {
-//			Material mat = gameObject.GetComponent<MeshRenderer> ().material;
-//			mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 0.5f);
-//		}
-//	}
-//	void OnTriggerExit2D(Collider2D collider){
-//		if (collider.gameObject.tag == "MainPlayer") {
-//			Material mat = gameObject.GetComponent<MeshRenderer> ().material;
-//			mat.color = new Color (mat.color.r, mat.color.g, mat.color.b, 1);
-//		}
-//	}
 
 
 }
