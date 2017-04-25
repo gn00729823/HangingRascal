@@ -12,7 +12,8 @@ public class CharacterControler : MonoBehaviour
 		characterPrefab = Resources.Load("Prefabs/Character");
         Messenger.AddListener<Character_Login>(GameEvent.Character_Login, OnCharacterLogin);
         Messenger.AddListener<Character_Move>(GameEvent.Character_Move, OnCharacterMove);
-		Messenger.AddListener<string> (GameEvent.Character_Leave,onCharacterLeave);
+        Messenger.AddListener<Character_ShowUI>(GameEvent.Character_ShowUI,OnShowUI);
+        Messenger.AddListener<string> (GameEvent.Character_Leave,onCharacterLeave);
 
 		GameData.getInstance ().getLogin ();
     }
@@ -33,6 +34,16 @@ public class CharacterControler : MonoBehaviour
     {
 
     }
+
+    void OnShowUI(Character_ShowUI ui)
+    {
+        if (characterDis.ContainsKey(ui.uid))
+        {
+            PlayerUI playerUI =characterDis[ui.uid].gameObject.GetComponent<PlayerUI>();
+            playerUI.showUi(ui);
+        }
+    }
+
 
 	void onCharacterLeave(string uid){
 		if (characterDis.ContainsKey (uid)) {
