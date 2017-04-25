@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 HangingRascal_Git.sln
 HangingRascal_Git.userprefs
 Library/ShaderCache/0/000d19bc2a7f964b5cb7d0ceaad484b9.bin
@@ -1288,3 +1289,9 @@ Temp/__Backupscenes/0.backup
 Temp/tempFile.res
 Temp/tempFile.resG
 Temp/tempFile.resS
+=======
+Temp/
+Library/ShaderCache/
+HangingRascal_Git.sln
+HangingRascal_Git.userprefs
+>>>>>>> feature/Server
