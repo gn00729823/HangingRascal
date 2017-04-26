@@ -12,11 +12,6 @@ public class UI_PlayerHpMove : MonoBehaviour {
     void Awake()
     {
         myTarget = transform.parent.parent.gameObject.GetComponent<BattleSpriteAction>();
-
-        if(!myTarget.isMainPlayer)
-        {
-            Destroy(this.gameObject);
-        }
         hp_obj = this.transform.FindChild("_hp").gameObject;
         OneChagePosX = (Mathf.Abs(MixPosX) - Mathf.Abs(MaxPosX))/100;
         
@@ -24,8 +19,11 @@ public class UI_PlayerHpMove : MonoBehaviour {
     }
 
 	void Start () {
-	
-	}
+        if (!myTarget.isMainPlayer)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
