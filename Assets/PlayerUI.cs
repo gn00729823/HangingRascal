@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour {
     private GameObject canvas;
 
     private List<playerUiObj> UIObjList = new List<playerUiObj>();
+    //private Dictionary<string, playerUiObj> UIObjList = new Dictionary<string, playerUiObj>();
 	// Use this for initialization
     void Awake(){
         canvas = transform.GetChild(1).gameObject;
@@ -24,25 +25,34 @@ public class PlayerUI : MonoBehaviour {
 	void FixedUpdate() {
        if(UIObjList.Count!=0)
         {
-            foreach(playerUiObj obj in UIObjList)
+            foreach (playerUiObj obj in UIObjList)
             {
                 if(obj.moveRange!=0)
-                {
-                   
+                {               
                     obj.moveRange--;
                     float y = obj.UIobj.transform.localPosition.y +3;
                     float x = obj.UIobj.transform.localPosition.x;
-
                     obj.UIobj.transform.localPosition = new Vector3(x,y,0);
                 }
                 else 
                 {
-                    Destroy(obj.UIobj);
-                    UIObjList.Remove(obj);
-                    
+                    Destroy(obj.UIobj);                                   
+                    obj.needDestroy = true;
                 }
             }
-        }
+            int listCount = UIObjList.Count;
+            if(listCount!=0)
+            {
+                for (int i = 0; i < listCount; i++)
+                {
+                    if (UIObjList[i].needDestroy)
+                    {
+                        UIObjList.RemoveAt(i);
+                        listCount--;
+                    }
+                }
+            }
+        }     
 	}
 
    private GameObject NewUiObj(string _message, _MessageType type)
@@ -76,6 +86,7 @@ public class PlayerUI : MonoBehaviour {
     {
         Character_ShowUI ui = new Character_ShowUI("123","100",_MessageType.Damage);
         showUi(ui);
+        
     }
 
 }
@@ -84,4 +95,5 @@ class playerUiObj
 {
     public float moveRange;
     public GameObject UIobj;
+    public bool needDestroy=false;
 }
