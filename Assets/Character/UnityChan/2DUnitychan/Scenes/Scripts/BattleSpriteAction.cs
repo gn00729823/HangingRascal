@@ -379,12 +379,12 @@ public class BattleSpriteAction : MonoBehaviour
                 }
             break;
             case AttackType.heavy:
-                
+            case AttackType.heavy_Lset:
                 if (curAnimatorInfo.shortNameHash == getTagHash(AnimationTag.Defense) && this.playerFront != enemyfront)
                 {
                     this.OnBorkenDef();
                 }
-                this.OnHit(AttackType.heavy, enemyfront);
+                this.OnHit(type, enemyfront);
                 Debug.Log("??");
                 _type = HitType.hit;
              break;
@@ -457,7 +457,7 @@ public class BattleSpriteAction : MonoBehaviour
                 return;
             }
             object[] message = new object[3];
-            message[0] = AttackType.heavy;
+            message[0] = AttackType.heavy_Lset;
             message[1] = HitCallBack;
             message[2] = this.playerFront;
             objAry[i].transform.gameObject.SendMessage("HitChaeck", message);
