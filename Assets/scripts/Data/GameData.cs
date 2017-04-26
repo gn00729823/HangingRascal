@@ -106,7 +106,7 @@ public class GameData{
 	}
 
 	public void onServerMessage(string uid,int type,string message){
-		
-		//Messenger.Broadcast<string> (GameEvent.Character_Leave,uid);
+		Character_ShowUI ui = new Character_ShowUI(uid,message, (_MessageType)type);
+		Messenger.Broadcast<Character_ShowUI> (GameEvent.Character_ShowUI,ui);
 	}
 }

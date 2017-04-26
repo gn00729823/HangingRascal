@@ -527,8 +527,10 @@ public class BattleSpriteAction : MonoBehaviour
             hp -= damage;
             if(damage!=0)
             {
-                Character_ShowUI ui = new Character_ShowUI(uid,damage.ToString(), _MessageType.Damage);
-                Debug.Log("插");
+				PhotonGlobal.PS.sendMessage (uid, (int)_MessageType.Damage, damage.ToString ());
+				Debug.Log ("Get Damage : " + damage);
+                //Character_ShowUI ui = new Character_ShowUI(uid,damage.ToString(), _MessageType.Damage);
+               // Debug.Log("插");
             }
 			if(hp<=0)
 				animator.SetBool(getTagHash(AnimationTag.IsDead),true);
