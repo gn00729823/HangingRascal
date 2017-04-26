@@ -133,8 +133,6 @@ public class BattleSpriteAction : MonoBehaviour
 			PhotonGlobal.PS.UpdateCharacterInfo (MemberGlobal.UniqueID.ToString(), transform.position,(int)updateClass.Clip,updateClass.isFromRight,hp);
 		}
 	}
-
-
 	void Update ()
 	{
         //---------------屬性偵測----
@@ -512,20 +510,26 @@ public class BattleSpriteAction : MonoBehaviour
         {
             rig2d.velocity = new Vector2(-1f, rig2d.velocity.y);
         }
-
+        int damage=0;
 		if (isMainPlayer) {
 			switch (type)
 			{
 			case AttackType.normal:
-				hp -= 20;
-				break;
-			case AttackType.heavy:
-				hp -= 10;
-				break;
+                damage = 20;        
+				    break;
+			case AttackType.heavy:		
+                damage = 10;
+                    break;
 			case AttackType.heavy_Lset:
-				hp -= 5;
-				break;
+                damage = 5;                
+				    break;
 			}
+            hp -= damage;
+            if(damage!=0)
+            {
+                Character_ShowUI ui = new Character_ShowUI(uid,damage.ToString(), _MessageType.Damage);
+                Debug.Log("插");
+            }
 			if(hp<=0)
 				animator.SetBool(getTagHash(AnimationTag.IsDead),true);
 			
@@ -604,7 +608,7 @@ public class BattleSpriteAction : MonoBehaviour
     }
     private void OnAniStateCheange(int nextHash)
     {
-		Debug.Log ("Get next Hash : " + nextHash);
+		//Debug.Log ("Get next Hash : " + nextHash);
         animatorState = AnimatorHashpool[nextHash];
     }
     private void CheckAnimatorClip()
@@ -670,7 +674,6 @@ public class BattleSpriteAction : MonoBehaviour
         TagHashpool[tag.ToString()] = Animator.StringToHash(tag.ToString());
         return TagHashpool[tag.ToString()];
     }
-
 	void OnTriggerEnter2D(Collider2D collider){
 		if (collider.gameObject.tag == "HiddenObject") {
 			if (isMainPlayer) {
