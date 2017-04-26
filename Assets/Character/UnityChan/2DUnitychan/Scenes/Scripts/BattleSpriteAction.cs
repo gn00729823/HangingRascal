@@ -359,6 +359,9 @@ public class BattleSpriteAction : MonoBehaviour
     }
     public HitType HitChaeck(object[] parm)
     {
+        if (isDeath)
+            return HitType.noHit;
+
         AttackType type = (AttackType)parm[0];
         HitCallBackCommen callback = (HitCallBackCommen)parm[1];
         PlayerFront enemyfront = (PlayerFront)parm[2];
@@ -402,7 +405,7 @@ public class BattleSpriteAction : MonoBehaviour
         Debug.Log(HitResoul);
         if (HitResoul == HitType.defense)
         {
-            StartCoroutine("PunchStiff", 1f);
+            StartCoroutine("PunchStiff", 5f);
             // animator.SetTrigger(getTagHash(AnimationTag.Damage));
         }
     }
